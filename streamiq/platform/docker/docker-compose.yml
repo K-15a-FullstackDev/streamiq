@@ -54,5 +54,29 @@ services:
       - "8000:8000"
     restart: unless-stopped
 
+  enricher:
+    build:
+      context: ../../apps/enricher-service
+      dockerfile: Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+    depends_on:
+      - redpanda
+    ports:
+      - "9001:9001"
+    restart: unless-stopped
+
+  anomaly:
+    build:
+      context: ../../apps/anomaly-service
+      dockerfile: Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+    depends_on:
+      - redpanda
+    ports:
+      - "9002:9002"
+    restart: unless-stopped
+
 volumes:
   pgdata: {}

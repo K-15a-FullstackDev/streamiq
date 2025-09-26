@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: anomaly-service
+  kafka:
+    bootstrap-servers: host.docker.internal:9094
+    consumer:
+      group-id: anomaly-group
+      auto-offset-reset: latest
+      properties:
+        spring.json.trusted.packages: "*"
+    producer:
+      properties:
+        spring.json.add.type.headers: false
+
+streamiq:
+  topic:
+    in: enriched.events.v1
+    out: alerts.v1
+
+server:
+  port: 9002

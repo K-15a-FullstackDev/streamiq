@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: enricher-service
+  kafka:
+    bootstrap-servers: host.docker.internal:9094
+    consumer:
+      group-id: enricher-group
+      auto-offset-reset: latest
+      properties:
+        spring.json.trusted.packages: "*"
+    producer:
+      properties:
+        spring.json.add.type.headers: false
+
+streamiq:
+  topic:
+    in: raw.events.v1
+    out: enriched.events.v1
+
+server:
+  port: 9001
