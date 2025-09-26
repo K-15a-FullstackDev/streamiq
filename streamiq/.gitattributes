@@ -1,0 +1,2 @@
+﻿# Keep Linux line endings in repo, auto-fix on Windows checkout
+* text=auto eol=lf
