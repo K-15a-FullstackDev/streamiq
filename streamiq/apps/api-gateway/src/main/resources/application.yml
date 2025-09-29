@@ -1,0 +1,27 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: api-gateway
+  kafka:
+    bootstrap-servers: host.docker.internal:9094
+    consumer:
+      group-id: api-stream-group
+      auto-offset-reset: latest
+  datasource:
+    url: jdbc:postgresql://host.docker.internal:5432/streamiq
+    username: postgres
+    password: postgres
+  jdbc:
+    template:
+      fetch-size: 200
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics"

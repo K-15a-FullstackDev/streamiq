@@ -78,5 +78,16 @@ services:
       - "9002:9002"
     restart: unless-stopped
 
+  api:
+    build:
+      context: ../../apps/api-gateway
+      dockerfile: Dockerfile
+    depends_on:
+      - redpanda
+      - postgres
+    ports:
+      - "9000:9000"
+    restart: unless-stopped
+
 volumes:
   pgdata: {}
